@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src='lib/jquery-2.2.4.min.js'></script>
+    <script src='lib/scrollama.min.js'></script>
+</head>
+<body>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        #scroll {        
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 50px auto 50px auto;
+            display: grid;
+            grid-template-columns: 50% 50%;   
+        }
+  
+  .scroll__graphic {
+        grid-column: 1/-1;
+        grid-row: 1/2;   
+        width: 100%;  
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        left: 1em;
+        max-height: 100vh;
+        z-index: 10; 
+        background-color: white;
+    }   
+    
+    .pic {       
+        top:0;
+        left:0;
+    }
+
+    .scroll__text {       
+        grid-column: 1/-1;    
+        width: 60%;    
+        margin: auto;
+        grid-row: 1/2;
+        z-index: 100;
+    }
+    
+     .step {
+         height:110vh;
+         display: flex;
+       /*  margin-top: 40vh;
+        margin-bottom: 120vh; */
+    } 
+
+    .step div {     
+        margin:auto;
+        background-color: rgba(255, 255, 255, 0.8);       
+        line-height: 1.6;
+    }  
+
+    .step div p {      
+        font-size: 18px;
+    } 
+
+    .pic-wrapper {
+        overflow: hidden;
+
+    }
+
+    
+
+    </style>
+
+<section id='scroll' class="desktop-only">
+    <div class='scroll__graphic sticky'> 
+        <div class='pic-wrapper'></div>
+            <img id='pic_1' class='pic' style='width: 100%;  position: absolute;' src=''/>
+            <img id='pic_2' class='pic' style='width: 100%;  position: absolute;' src=''/>
+            
+        </div>
+    </div>
+
+
+    <div class='scroll__text'>  
+        
+         <!-- Ірпінь -->
+        <div class='step' data-scrollama-index="0">
+            <div>
+                <p>26 лютого російська ракета влучила в висотну будівлю поблизу аеропорту «Жуляни», залишивши «відкушений» шматок на рівні 17-20 поверхів. Загинули 2 людини, 4 отримали поранення. Місцева влада після експертизи ухвалила рішення, що поверхи над місцем влучання будуть розбирати. Проводити демонтаж будуть з повітря, обережно вирізаючи невеликі шматки бетонних конструкцій. Завершити будівництво планують до початку опалювального сезону. 
+                </p>
+            </div>
+        </div>
+        <div class='step' data-src='01_Irprin.jpg' data-scrollama-index="1" style='height:70vh'>
+            
+        </div>
+        <div class='step' data-src='02_Irprin.jpg' data-scrollama-index="2" style='height:70vh'>
+            
+        </div>
+        <div class='step' data-scrollama-index="3" >
+            <div>
+                <p> «Той факт, що будівля встояла і не завалилась після ракетного удару, свідчить про те, що її, ймовірно, звели із дотриманням сучасних будівельних нормативів, які враховують аспект прогресуючого руйнування. Тобто навіть у випадку, якщо вибухом руйнується декілька колон, стін – будівля сама не руйнується. Сучасні висотні будівлі в цьому плані найбільш міцні. </p>            
+            </div>
+        </div>
+        <div class='step' data-src='05_Irprin.jpg' data-scrollama-index="4" >
+            <div>
+                <p>У них є «ядра жорсткості» з бетону – це ліфтові та сходові вузли. Що вища будівля, то товстіші мають бути колони, аби банально витримати вагу цієї будівлі, вітрові навантаження. А що більша колона стіни – то вона краще потенційно може витримувати бокові вибухи. Приклад будинку на Татарці, де ракета поцілила у перші поверхи, також це підтверджує. І це не якийсь винахід останніх років, це норми, які застосовуються до висотних будівель уже давно. Приміром, телецентр «Олівець» чи будівля Мінінфраструктури, побудовані в радянський час, теж мають такі «ядра жорсткості». </p>    
+                <p>Безумовно, це не означає, що будь-яка 25-поверхова висотка витримає будь-який ракетний удар. Цю конкретну ракету витримало, а можливо якийсь «іскандер» не витримає».               
+                </p>
+            </div>
+        </div>      
+
+
+        <!-- Одеса -->
+        <div class='step' data-scrollama-index="5" >
+            <div>
+                <p>23 квітня ракетного удару зазнала Одеса. Російські військові влучили ракетою у четвертий під'їзд, між четвертим та п’ятим поверхами.Снаряд запустили з літака Ту-95, який перебував в акваторії Каспійського моря. Мінімум у двох квартирах ЖК «Тирас» почалися пожежі. Ракета пробила будинок наскрізь. 8 людей загинуло, 18 дістали поранення. 30 квартир одеситів були знищені повністю, ще 62 отримали руйнування різного ступеня. Влада ухвалила рішення, що будинок можна відновити. У травні зміцнили конструкції та стабілізували будинок, що допомогло зупинити його подальшу руйнацію. У 20-х числах липня місцеві медіа опублікували інформацію, що частина комплексу уже відбудована.
+                </p>
+            </div>
+        </div>
+        
+        <div class='step' data-src='01_Odesa.jpg' data-scrollama-index="6" style='height:50vh'>
+            
+        </div>
+
+        <div class='step' data-src='02_Odesa.jpg' data-scrollama-index="7" style='height:50vh'>            
+        </div>
+
+        <div class='step' data-scrollama-index="8" >
+            <div>
+                <p>Д.М.: «Особливість Одеси в тому, що у південних регіонах ще більші вимоги до міцності будівель. Адже там закладається можливість сейсмічної активності, тому будинки повинні бути ще стійкішими. 
+                </p>
+            </div>
+        </div>
+
+        <div class='step' data-src='05_Odesa.jpg' data-scrollama-index="9" >
+            <div>
+                <p>Будівля 2012 року побудови, в яку влучили ракетою, як і столична висотка, не завалилась саме через наявність «ядра жорсткості». Тому візуально – звісно, ми не бачили результатів експертизи і не знаємо повного опису характеру руйнувань, не проводили дослідження – «вирвану» частину будинку можна відновити, не вдаючись до того, щоб розбирати весь під’їзд».
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</section> 
+
+
+<script src='main.js'></script>
+    
+</body>
+</html>

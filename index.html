@@ -18,15 +18,7 @@
     <style>
         body {
             font-family: 'Lora', serif;
-
             overflow-x: hidden;
-        }
-
-        article p {
-            font-size: 18px;
-            width: 60%;    
-            margin: 20px auto;
-            line-height: 1.6;
         }
 
         #scroll {        
@@ -38,85 +30,94 @@
             grid-template-columns: 50% 50%;   
         }
   
-  .scroll__graphic {
-        grid-column: 1/-1;
-        grid-row: 1/2;   
-        width: 100%;  
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        left: 1em;
-        max-height: 100vh;
-        z-index: 10; 
-        background-color: white;
-    }   
+    .scroll__graphic {
+            grid-column: 1/-1;
+            grid-row: 1/2;   
+            width: 100%;  
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            left: 1em;
+            max-height: 100vh;
+            z-index: 10; 
+            background-color: white;
+        }   
+        
+        .pic {      
+            top:0;
+            left:0;
+        }
+
+        .scroll__text {       
+            grid-column: 1/-1;    
+            max-width: 800px;    
+            width:90%;
+            margin: auto;
+            grid-row: 1/2;
+            z-index: 100;
+        }
+        
+        .step {
+            height:max-content;
+            display: flex;
+            margin-top: 80vh; 
+        } 
+
+        .step div {     
+            margin:auto;
+            background-color: rgba(255, 255, 255, 0.8);       
+            line-height: 1.6;
+        }  
+
+        .chapter {
+            padding: 5px 0;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            font-size: 36px;
+            font-weight: 400px;
+        }
+
+        .step div {
+            padding: 0 30px;
+        }
     
-    .pic {      
-        top:0;
-        left:0;
-    }
+        .step div.wide-p {
+            font-size: 22px;
+            width: 100%;
+        }
 
-    .scroll__text {       
-        grid-column: 1/-1;    
-        width: 40%;    
-        margin: auto;
-        grid-row: 1/2;
-        z-index: 100;
-    }
-    
-     .step {
-         height:max-content;
-         display: flex;
-         margin-bottom: 80vh; 
-    } 
+        .step div.narrow-p {
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 500px;
+            margin: auto;
+        }
 
-    .step div {     
-        margin:auto;
-        background-color: rgba(255, 255, 255, 0.8);       
-        line-height: 1.6;
-    }  
+        .step div p span {      
+        background-color: black;
+        color: white;
+        padding:2px 0;
+        } 
 
-    .chapter {
-        padding: 5px 0;
-        margin: 0 auto;
-        text-align: center;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
-        font-size: 36px;
-        font-weight: 400px;
-    }
+        .pic-wrapper {
+            overflow: hidden;
 
-    .step div p {      
-        font-size: 20px;
-    } 
+        }
 
-    .step div p span {      
-       background-color: black;
-       color: white;
-       padding:2px 0;
-    } 
-
-    .pic-wrapper {
-        overflow: hidden;
-
-    }
-
-    #city-marker {
-        font-size: 16px;
-        font-style:italic;
-        font-weight: normal;
-        position: absolute;
-        bottom:10px;
-        left:45%;
-    }
-
-    
-
+        #city-marker {
+            font-size: 16px;
+            font-style:italic;
+            font-weight: normal;
+            position: absolute;
+            bottom:10px;
+            left:45%;
+        }
     </style> 
 
 <section id='scroll' class="desktop-only">
-    <div class='scroll__graphic sticky'> 
-     
+    <div class='scroll__graphic sticky'>      
         <div class='pic-wrapper'>
             <img id='pic_1' class='pic' style='width: 100%;  position: absolute;' src=''/>
             <img id='pic_2' class='pic' style='width: 100%;  position: absolute;' src=''/>
@@ -133,7 +134,7 @@
             data-class='empty-slide'
             data-city='Київ' 
             data-scrollama-index="0">
-            <div>
+            <div class='wide-p'>
                 <h2 class='chapter'>Монолітні будинки. Київ та Одеса</h2>
                 <p>26 лютого російська ракета влучила в висотну будівлю поблизу аеропорту «Жуляни», залишивши «відкушений» шматок на рівні 17-20 поверхів. Загинули 2 людини, 4 отримали поранення. Місцева влада після експертизи ухвалила рішення, що поверхи над місцем влучання будуть розбирати. Проводити демонтаж будуть з повітря, обережно вирізаючи невеликі шматки бетонних конструкцій. Завершити будівництво планують до початку опалювального сезону.
                 </p>
@@ -142,23 +143,23 @@
         <div class='step' 
             data-class='show-first-pic' 
             data-src='img/Kyiv_1.png' 
-            data-scrollama-index="1" 
-            style='margin-bottom: 50vh;'>            
+            data-scrollama-index="1">      
         </div>
 
 
         <div class='step' 
             data-class='show-second-pic' 
             data-src='img/Kyiv_2.png' 
-            data-scrollama-index="2">            
+            data-scrollama-index="2"> 
         </div>
 
         <div class='step' 
             data-class='split' 
             data-left-f='-15%'              
-            data-src='img/Kyiv_3.png' 
+            data-src='img/Kyiv_3.png'
+            data-src2='img/Kyiv_2.png' 
             data-scrollama-index="3" >
-            <div>
+            <div class='narrow-p'>
                 <p> «Той факт, що будівля встояла і не завалилась після ракетного удару, свідчить про те, що її, ймовірно, звели із дотриманням сучасних будівельних нормативів, які враховують аспект прогресуючого руйнування. Тобто навіть у випадку, якщо вибухом руйнується декілька колон, стін – будівля сама не руйнується. Сучасні висотні будівлі в цьому плані найбільш міцні. У них є «ядра жорсткості» з бетону – це ліфтові та сходові вузли. Що вища будівля, то товстіші мають бути колони, аби банально витримати вагу цієї будівлі, вітрові навантаження. А що більша колона стіни – то вона краще потенційно може витримувати бокові вибухи. Приклад будинку на Татарці, де ракета поцілила у перші поверхи, також це підтверджує. І це не якийсь винахід останніх років, це норми, які застосовуються до висотних будівель уже давно. Приміром, телецентр «Олівець» чи будівля Мінінфраструктури, побудовані в радянський час, теж мають такі «ядра жорсткості». </p>    
                 <p>Безумовно, це не означає, що будь-яка 25-поверхова висотка витримає будь-який ракетний удар. Цю конкретну ракету витримало, а можливо якийсь «іскандер» не витримає».              
                 </p>         
@@ -173,7 +174,7 @@
             data-class='empty-slide'
             data-city='Одеса' 
             data-scrollama-index="5" >
-            <div>
+            <div class='wide-p'>
                 <p>23 квітня ракетного удару зазнала Одеса. Російські військові влучили ракетою у четвертий під'їзд, між четвертим та п’ятим поверхами.Снаряд запустили з літака Ту-95, який перебував в акваторії Каспійського моря. Мінімум у двох квартирах ЖК «Тирас» почалися пожежі. Ракета пробила будинок наскрізь. 8 людей загинуло, 18 дістали поранення. 30 квартир одеситів були знищені повністю, ще 62 отримали руйнування різного ступеня. Влада ухвалила рішення, що будинок можна відновити. У травні зміцнили конструкції та стабілізували будинок, що допомогло зупинити його подальшу руйнацію. У 20-х числах липня місцеві медіа опублікували інформацію, що частина комплексу уже відбудована.</p>
             </div>
         </div>
@@ -181,22 +182,22 @@
         <div class='step' 
             data-class='show-first-pic' 
             data-src='img/Odesa_1.png' 
-            data-scrollama-index="6" 
-            style='margin-bottom: 50vh;'>            
+            data-scrollama-index="6" >   
         </div>
 
         <div class='step' 
             data-class='show-second-pic' 
             data-src='img/Odesa_2.png' 
-            data-scrollama-index="7">            
+            data-scrollama-index="7">  
         </div>
 
         <div class='step' 
             data-class='split' 
             data-src='img/Odesa_3.png' 
+            data-src2='img/Odesa_2.png' 
             data-left-f='-8%' 
             data-scrollama-index="8" >
-            <div>
+            <div class='narrow-p'>
                 <p>Д.М.: «Особливість Одеси в тому, що у південних регіонах ще більші вимоги до міцності будівель. Адже там закладається можливість сейсмічної активності, тому будинки повинні бути ще стійкішими. Будівля 2012 року побудови, в яку влучили ракетою, як і столична висотка, не завалилась саме через наявність «ядра жорсткості». Тому візуально – звісно, ми не бачили результатів експертизи і не знаємо повного опису характеру руйнувань, не проводили дослідження – «вирвану» частину будинку можна відновити, не вдаючись до того, щоб розбирати весь під’їзд».
                 </p>
             </div>
@@ -207,7 +208,7 @@
             data-class='empty-slide' 
             data-city='Бородянка' 
             data-scrollama-index="10" >
-            <div>
+            <div class='wide-p'>
                 <h2 class='chapter'>Панельні будинки. Бородянка і Маріуполь</h2>
                 <p>Точних дат, коли було зруйновано будівлі в центрі містечка Бородянка під Києвом та схожих панельних багатоквартирних будинків у одному зі спальних районів Маріпоуля – немає, так само як немає достовірних даних про джерело руйнувань: це однаково могли бути і авіабомби, і артилерійські обстріли. Під завалами могли загинути десятки людей. Фотографії цих будинків облетіли увесь світ, в тому числі і через конструктивну особливість: коли через ушкодження завалився цілий під’їзд, на верхніх поверхах окремі панелі стін залишилися висіти немов у невагомості. Будинки підлягають повному знесенню.
                 </p>
@@ -217,23 +218,23 @@
         <div class='step' 
             data-class='show-first-pic' 
             data-src='img/Borodjanka_1.png' 
-            data-scrollama-index="11" 
-            style='margin-bottom: 50vh;'>            
+            data-scrollama-index="11" >    
         </div>
 
         <div class='step' 
             data-class='show-second-pic' 
             data-src='img/Borodjanka_2.png' 
             data-scrollama-index="12" 
-            style='margin-bottom: 50vh;'>            
+            >   
         </div>
 
         <div class='step' 
             data-class='split' 
             data-left-f='-15%' 
             data-src='img/Borodjanka_3.png' 
+            data-src2='img/Borodjanka_2.png' 
             data-scrollama-index="13" >
-            <div>
+            <div class='narrow-p'>
                 <p>Д.М.: «Старі будинки – і це стосується не лише панельних конструкцій – не розраховані на запобігання прогресуючому руйнуванню. У випадку конкретно панельних об’єктів, бомба могла зруйнувати лише один-два верхніх поверхи. Але щойно руйнуються, панелі, вони починають падати одна на одну і самі перетворюватися на «снаряд». І що вища ця будівля, то з більшою силою верхні панелі, які «склалися», будуть тиснути на нижні поверхи і теж спричиняти руйнування. Є загроза у тому, що стінова панель може вибитися вибухом, бо вона тримається на закрутних деталях. І тоді відсутність однієї панелі може спричинити руйнування всієї секції. Таким чином вся секція «складається» не тільки через руйнівну силу бомби чи ракети (хоча це теж може бути фактором), а через особливості конструкції. Це саме стосується і побутових аварій, наприклад, вибуху газу.
 
                 </p>
@@ -241,26 +242,33 @@
         </div>        
 
 
-        <!-- Маріуполь -->        
+        <!-- Маріуполь -->         
+        <div class='step' 
+            data-class='empty-slide' 
+            data-city='Маріуполь' 
+            data-scrollama-index="10"
+            style='margin-top: 40vh' >  
+        </div>
+
         <div class='step' 
             data-class='show-first-pic' 
             data-src='img/Mariupol_1.png' 
-            data-scrollama-index="16" 
-            style='margin-bottom: 50vh;'>            
+            data-scrollama-index="16" >  
         </div>
 
         <div class='step' 
             data-class='show-second-pic' 
             data-src='img/Mariupol_2.png' 
-            data-scrollama-index="17">            
+            data-scrollama-index="17">   
         </div>
 
         <div class='step' 
             data-class='split' 
             data-left-f='-15%' 
             data-src='img/Mariupol_3.png' 
+            data-src2='img/Mariupol_2.png' 
             data-scrollama-index="18" >
-            <div>
+            <div class='narrow-p'>
                 <p>Крім того, ми бачимо на фото наслідки пожежі. Бетон, арматура, перекриття можуть руйнуватися і «складатися» також від високої температури. Яка частка бомби в цих руйнуваннях, а яка – пожежі – визначити дуже складно. Панелі, які випадково лишилися «висіти» на верхніх поверхах, тепер не спираються на інші панелі, не несуть перекриття, а «несуть» лише самих себе. Навантаження на них невелике, тому коли решта секції «відірвалась», вони лишилися висіти. Це, звісно, тимчасово. Бо так чи інакше кріплення деформовані, і рано чи пізно вони обваляться, якщо цього не зроблять при демонтажі люди. На жаль, найімовірніше, зображені на фото будівлі підлягають повному знесенню через те, що руйнування і пожежа, швидше за все, зашкодили всій конструкції».
                 </p>
             </div>
@@ -272,7 +280,7 @@
          data-class='empty-slide' 
          data-city='Часів Яр' 
          data-scrollama-index="10" >
-         <div>
+         <div class='wide-p'>
              <h2 class='chapter'>Цегляні будинки. Часів Яр, Харків, Чернігів</h2>
              <p>В містечко Часів Яр на Донеччині російські ракети прилетіли 10 липня, зруйнувавши, серед іншого, цегляну будівлю гуртожитка. Від нальотів загинули 48 людей. Наступного дня окупанти поцілили по так само цегляному будинку 1960-х років в історичному центрі Харкова, обійшлось без жертв. В обидвох випадках руйнувань зазнали цілі секції. Також цегляною є будівля готелю «Україна» в Чернігові, по якому росіяни вдарили в ніч на 12 березня. Початково вважалось, що на готель скинули авіабомбу, проте згодом на території знайшли уламки “Іскандера”. Про це навіть зняли пропагандистський сюжет росіяни, яким традиційно привиділись у готелі іноземні найманці.</p>
          </div>
@@ -281,77 +289,90 @@
      <div class='step' 
          data-class='show-first-pic' 
          data-src='img/Chasiv_Yar_1.png' 
-         data-scrollama-index="11" 
-         style='margin-bottom: 50vh;'>            
+         data-scrollama-index="11" > 
      </div>
 
      <div class='step' 
          data-class='show-second-pic' 
          data-src='img/Chasiv_Yar_2.png' 
-         data-scrollama-index="12" 
-         style='margin-bottom: 50vh;'>            
+         data-scrollama-index="12" >    
      </div>
 
      <div class='step' 
          data-class='split' 
          data-left-f='-8%' 
          data-src='img/Chasiv_Yar_3.png' 
+         data-src2='img/Chasiv_Yar_2.png' 
          data-scrollama-index="13" >
-         <div>
+         <div class='narrow-p'>
              <p>Д.М.: «З фото з Часового Яру видно, що перекриттям в цих будинках служили панельні плити. Тобто так само плита руйнує плиту, яка нижче, і так секція може складатися. Панельні будинки, де стіни залізобетонні, та цегляні будинки, де плити перекриття панельні – схожі між собою. В гуртожиток в Часовому Яру прилетіло 4 потужних ракети, там навряд чи щось би витримало, навіть якби перекриття були монолітні, як у сучасних будинках. Сама цегла гірше тримає навантаження від вибухової хвилі, ніж бетон.</p>
          </div>
      </div>  
      
      
-      <!-- Харків -->        
+      <!-- Харків -->    
+      <div class='step' 
+            data-class='empty-slide' 
+            data-city='Харків' 
+            data-scrollama-index="10" 
+            style='margin-top: 40vh' >   
+        </div>
+
       <div class='step' 
         data-class='show-first-pic' 
         data-src='img/Kharkiv_1.png' 
-        data-scrollama-index="16" 
-        style='margin-bottom: 50vh;'>            
+        data-scrollama-index="16"> 
     </div>
 
     <div class='step' 
         data-class='show-second-pic' 
         data-src='img/Kharkiv_2.png' 
-        data-scrollama-index="17">            
+        data-scrollama-index="17">  
     </div>
 
     <div class='step' 
         data-class='split' 
         data-left-f='-15%' 
         data-src='img/Kharkiv_3.png' 
+        data-src2='img/Kharkiv_2.png' 
         data-scrollama-index="18" >
-        <div>
+        <div class='narrow-p'>
             <p>У будинку зі світлини з Харкова схоже, що зруйнувалася саме цегляна стіна, на яку опиралися перекриття. І тому вони завалилися, пробивши нижні поверхи. Коли у перекриттів зникла опора, вони «посипалися». Якби тут було монолітне перекриття, то такого б не сталось, принаймні, на це було б більше шансів. Тобто тут знову-таки вибухова хвиля від ракети могла бути незначною. За великим рахунком, можна розібрати цю частину, яка зруйнувалась, а решту будинку, скоріше за все, відновити. Судячи з фото, пожежі не було тільки руйнування. Але звісно, кожен конкретний випадок слід розглядати окремо. Нахил будинку внаслідок ударної хвилі «на око» не видно, його треба вимірювати приладами</p>
         </div>
   </div>
 
 
-   <!-- Чернігів -->        
+   <!-- Чернігів -->  
+   <div class='step' 
+            data-class='empty-slide' 
+            data-city='Чернігів' 
+            data-scrollama-index="10"
+            style='margin-top: 40vh' >  
+    </div>
+
    <div class='step' 
         data-class='show-first-pic' 
         data-src='img/Chernigiv_1.png' 
-        data-scrollama-index="16" 
-        style='margin-bottom: 50vh;'>            
+        data-scrollama-index="16"> 
     </div>
 
     <div class='step' 
         data-class='show-second-pic' 
         data-src='img/Chernigiv_2.png' 
-        data-scrollama-index="17">            
+        data-scrollama-index="17"> 
     </div>
 
     <div class='step' 
         data-class='split' 
-        data-left-f='5%' 
-        data-left-s='5%' 
-        data-top-f='-30%' 
+        data-left-f='10%' 
+        data-left-s='10%' 
+        data-top-f='-10%' 
         data-top-s='30%'  
         data-width='70%'     
         data-src='img/Chernigiv_3.png' 
+        data-src2='img/Chernigiv_2.png' 
         data-scrollama-index="18" >
-        <div>
+        <div  class='narrow-p'>
             <p>Що стосується готелю в Чернігові, конструктивно у нього така ж схема: цегляні стіни і бетонні плити перекриття – це смужки, які розворотило після удару авіабомби. Схоже, що зруйнувалося все до першого поверху. Руйнування повторюють контур вирви, тобто вибухова хвиля діяла так само, як коли б ця бомба впала на землю. Тобто епіцентр з найглибшим ураженням і далі на поверх вище, вище. Тут ми бачимо, що доволі міцні і товсті стіни, і завдяки цьому плити порозривало, а стіни залишилися саме за рахунок товщини. Звісно, що тут буде все під знесення».</p>
         </div>
    </div>
@@ -361,9 +382,9 @@
    <!-- Ірпінь -->
    <div class='step' 
    data-class='empty-slide' 
-   data-city='Часів Яр' 
+   data-city='Ірпінь' 
    data-scrollama-index="10" >
-   <div>
+   <div  class='wide-p'>
        <h2 class='chapter'>ЖК “Ірпінські Липки”</h2>
        <p>ТЕКСТИ уже писали про один із найвідоміших зруйнованих будинків в Ірпені під Києвом в ЖК «Ірпінські Липки», який показують міжнародним делегаціям, коли проводять екскурсії місцями звірств російських солдат у столичному передмісті в лютому-березні, а також про перспективи відновлення містечка і околиць. За словами Дмитра Макагона, візуально будівля більше постраждала від пожежі, ніж від вибухів, а тому підлягає повному знесенню.
     </p>
@@ -373,24 +394,23 @@
 <div class='step' 
    data-class='show-first-pic' 
    data-src='img/Irprin_1.png' 
-   data-scrollama-index="11" 
-   style='margin-bottom: 50vh;'>            
+   data-scrollama-index="11">  
 </div>
 
 <div class='step' 
    data-class='show-second-pic' 
    data-src='img/Irprin_2.png' 
-   data-scrollama-index="12" 
-   style='margin-bottom: 50vh;'>            
+   data-scrollama-index="12">  
 </div>
 
 <div class='step' 
    data-class='split' 
    data-left-f='-15%' 
    data-src='img/Irprin_3.png' 
+   data-src2='img/Irprin_2.png' 
    data-scrollama-index="13" >
-   <div>
-       <p>Д.М.:  «Тут ми бачимо характерні ознаки руйнування від пожежі. Бетон повідколювався, коли нагрівався, оголилася арматура. Якби це був мирний час і працювали відповідні служби, вони б мали оперативно локалізувати і загасити вогонь за 1-2 години. Але коли палає півдня – то це вже неможливо відновити. Передусім через те, що невідомо, як повела себе арматура при високій температурі. Вона звичайно не плавиться, як термінатор у кіно, але їй достатньо 500 градусів, щоб почати деформуватися, розширюватися. Це і призводить до тріщин у бетоні, його шматки починають відламуватися. Тобто уже конструкція не відповідає вимогам безпеки і надійності».</p>
+   <div class='narrow-p'>
+       <p >Д.М.:  «Тут ми бачимо характерні ознаки руйнування від пожежі. Бетон повідколювався, коли нагрівався, оголилася арматура. Якби це був мирний час і працювали відповідні служби, вони б мали оперативно локалізувати і загасити вогонь за 1-2 години. Але коли палає півдня – то це вже неможливо відновити. Передусім через те, що невідомо, як повела себе арматура при високій температурі. Вона звичайно не плавиться, як термінатор у кіно, але їй достатньо 500 градусів, щоб почати деформуватися, розширюватися. Це і призводить до тріщин у бетоні, його шматки починають відламуватися. Тобто уже конструкція не відповідає вимогам безпеки і надійності».</p>
    </div>
 </div>  
 

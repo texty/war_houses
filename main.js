@@ -5,83 +5,118 @@ var container = document.querySelector('#scroll');
     var scroller = scrollama();
 
 function handleStepEnter(r) { 
-    let preudoClass = $(r.element).data("class");  
-    console.log(r.index);
-    console.log(preudoClass);
+    let preudoClass = $(r.element).data("class");      
 
+    if(r.index === 0){
+        $(".pic").attr("src", null);
 
-    if(preudoClass === 'show-first-pic' && r.direction ==="down"){
+    //step 1
+    } else if(preudoClass === 'show-first-pic' && r.direction ==="down"){ 
         let src = $(r.element).data("src");
-        
-        d3.selectAll(".pic")
-            .style("left", 0)
-            .style("top", 0)
-            .style("width", '100%') 
+        $("#pic_1")
+            .css("opacity", 0).attr("src", src)
+            .fadeTo(1000, 1)
 
-        d3.select("#pic_2")
-            .style("opacity", 0);  
-        
-        d3.select("#pic_1")
-            .style("opacity", 0)
+        $("#pic_2").attr("src", null); 
+
+    } else if(preudoClass === 'show-first-pic' && r.direction ==="up"){  
+        let src = $(r.element).data("src"); 
+        $("#pic_1")
             .attr("src", src)
-            .transition()
-            .duration(1000)
-            .style("opacity", 1)
+            .css("opacity", 1)   
 
-    } else if(preudoClass === 'show-second-pic' && r.direction ==="down"){
+        $("#pic_2").fadeTo(1000, 0)  
+         
+    //step 2
+    }  else if(preudoClass === 'show-second-pic' && r.direction ==="down"){       
         let src= $(r.element).data("src");
-
-        d3.select("#pic_1")        
-            .transition()
-            .duration(1000)
-            .attr("opacity", 0)
+        $("#pic_1").fadeTo(1000, 1);
        
-        d3.select("#pic_2")
-            .style("opacity", 0)
-            .attr("src", src)
-            .transition()
-            .duration(1000)
-            .style("opacity", 1)
+        $("#pic_2")   
+            .css("opacity", 0)         
+            .attr("src", src)            
+            .fadeTo(1000, 1);
 
+    } else if(preudoClass === 'show-second-pic' && r.direction ==="up"){             
+            $("img.pic").animate({'left':0, "top":0, "width": "100%"}, 1000, function() {
+                let src= $(r.element).data("src").replace("2", "1");
+                $("#pic_1").attr("src", src);
+       });       
+            
+    //step 3
     } else if(preudoClass === 'split' && r.direction ==="down"){
         let marginLeft_1 = $(r.element).data("left-f") ?? "-15%";
         let marginLeft_2 = $(r.element).data("left-s") ?? "40%";
         let marginTop_1 = $(r.element).data("top-f") ?? "0";
         let marginTop_2 = $(r.element).data("top-s") ?? '0';
         let picWidth = '80%';
-        
-        d3.select("#pic_1")
-            .style("opacity", 1)
-            .transition()
-            .duration(1000)
-            .style("left", marginLeft_1)
-            .style("top", marginTop_1)
-            .style("width", picWidth)            
-            .on("end", function(){
+
+
+        $("#pic_1").css("opacity", 1)
+            .animate({'left':marginLeft_1, "top":marginTop_1, "width": picWidth},
+            1000, function() {
                 let src= $(r.element).data("src");           
-                d3.select(this).attr("src", src);
+                $(this).attr("src", src);
             })
 
-        d3.select("#pic_2")           
-            .transition()
-            .duration(1000)
-            .style("left", marginLeft_2)
-            .style("top", marginTop_2)
-            .style("width", picWidth)
-                
+        $("#pic_2")
+            .animate({'left':marginLeft_2, "top":marginTop_2, "width": picWidth},
+            1000)       
 
-    } else if(preudoClass === 'show-red-lines' && r.direction ==="down"){
-        let src= $(r.element).data("src");
-        $("#pic_1").attr("src", src); 
+               
 
-    } else if(preudoClass === 'empty-slide' && r.direction ==="down"){
+    }  else if(preudoClass === 'split' && r.direction ==="up"){
+        let marginLeft_1 = $(r.element).data("left-f") ?? "-15%";
+        let marginLeft_2 = $(r.element).data("left-s") ?? "40%";
+        let marginTop_1 = $(r.element).data("top-f") ?? "0";
+        let marginTop_2 = $(r.element).data("top-s") ?? '0';
+        let picWidth = '80%';
+        
+        $("#pic_1").css("opacity", 1)
+        .animate({'left':marginLeft_1, "top":marginTop_1, "width": picWidth},
+         1000, function() {
+            let src1= $(r.element).data("src"); 
+            $('#pic_1').attr("src", src1);
+        })
+
+        $("#pic_2").css("opacity", 1)
+            .animate({'left':marginLeft_2, "top":marginTop_2, "width": picWidth}, 
+                1000, function() {
+                let src2= $(r.element).data("src2"); 
+                $('#pic_2').attr("src", src2);
+            }) 
+    }
+    else if(preudoClass === 'empty-slide' && r.direction ==="down"){
         let city= $(r.element).data("city");
         $("#city-marker").text(city)
 
-        d3.selectAll(".pic")        
+        $(".pic").animate({'opacity':  0},
+            1000, function(){
+                $(this).attr("src", null)
+                .css("left",0)
+                .css("top",0)
+                .css("width", "100%")
+            })
+
+      /*   d3.selectAll(".pic")        
             .transition()
             .duration(1000)
-            .style("opacity", 0)            
+            .style("opacity", 0)  
+            .on("end", function(){
+                d3.select(this)
+                .attr("src", null)
+                .style("left", 0)
+                .style("top", 0)
+                .style("width", '100%') ;
+            })  */
+            
+    } else if(preudoClass === 'empty-slide' && r.direction ==="up"){
+        let city= $(r.element).data("city");
+       
+        $("#city-marker").text(city)
+        $(".pic").attr("src", null)    
+            
+            
     } 
 
 }
@@ -100,7 +135,7 @@ function init() {
         graphic: '.scroll__graphic',
         text: '.scroll__text',
         step: '.scroll__text .step',
-        offset: 0.8,
+        offset: 0.5,
         debug: true
     })
         .onStepEnter(handleStepEnter);

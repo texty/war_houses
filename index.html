@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
     <script src='lib/jquery-2.2.4.min.js'></script>
-    <script src='lib/d3v5.min.js'></script>
     <script src='lib/scrollama.min.js'></script>
 </head>
 <body>
@@ -19,39 +18,59 @@
         body {
             font-family: 'Lora', serif;
             overflow-x: hidden;
-        }
-
+            margin: 0;
+        } 
+      
         #scroll {        
             position: relative;
-            width: 100%;
-            max-width: 1400px;
-            margin: 50px auto 50px auto;
+            width: calc(100% + 2em);
+            margin: 50px auto 50px -1em;
             display: grid;
             grid-template-columns: 50% 50%;   
         }
-  
-    .scroll__graphic {
-            grid-column: 1/-1;
-            grid-row: 1/2;   
-            width: 100%;  
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            left: 1em;
-            max-height: 100vh;
-            z-index: 10; 
-            background-color: white;
-        }   
+
+       
+        .scroll__graphic {
+                grid-column: 1/-1;
+                grid-row: 1/2;   
+                width: 100%;  
+                max-width: 1400px;
+                margin: 0 auto;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                left: 1em;
+                max-height: 90vh;
+                z-index: 10; 
+                background-color: white;
+            } 
         
         .pic {      
             top:0;
             left:0;
         }
 
+        @media(max-width:800px) and (orientation: portrait) {
+            #scroll{
+                display: block;
+                }
+
+            .scroll__graphic {
+                max-width: 1400px;
+                margin: 0 auto;
+                height: 300px;
+                z-index: 1000;
+            }
+
+            .pic {      
+                top: 50px;
+                left: 0;
+            }
+        }
+
         .scroll__text {       
-            grid-column: 1/-1;    
-            max-width: 800px;    
-            width:90%;
+            grid-column: 1/-1;              
+            width: 100%;
             margin: auto;
             grid-row: 1/2;
             z-index: 100;
@@ -67,25 +86,20 @@
             margin:auto;
             background-color: rgba(255, 255, 255, 0.8);       
             line-height: 1.6;
+            padding: 0 30px;
         }  
 
-        .chapter {
-            padding: 5px 0;
-            margin: 0 auto;
-            text-align: center;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            font-size: 36px;
-            font-weight: 400px;
-        }
-
-        .step div {
-            padding: 0 30px;
-        }
-    
         .step div.wide-p {
             font-size: 22px;
             width: 100%;
+            background-color: #141617;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .step div.wide-p p {
+            max-width: 800px;
+            margin: auto;
         }
 
         .step div.narrow-p {
@@ -95,6 +109,19 @@
             margin: auto;
         }
 
+        .chapter {
+            padding: 5px 0;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid rgb(255, 255, 255);
+            border-bottom: 1px solid rgb(255, 255, 255);
+            font-size: 36px;
+            font-weight: 400px;
+            max-width: 800px;
+        }       
+    
+        
+
         .step div p span {      
         background-color: black;
         color: white;
@@ -103,6 +130,8 @@
 
         .pic-wrapper {
             overflow: hidden;
+            position:relative;
+            height: 100%;
 
         }
 
@@ -111,9 +140,11 @@
             font-style:italic;
             font-weight: normal;
             position: absolute;
-            bottom:10px;
-            left:45%;
+            bottom:10px;            
+            left: 50%;
+            transform: translate(-50%, -50%); 
         }
+        
     </style> 
 
 <section id='scroll' class="desktop-only">
@@ -131,8 +162,7 @@
         
          <!-- Київ -->
         <div class='step' 
-            data-class='empty-slide'
-            data-city='Київ' 
+            data-class='empty-slide'           
             data-scrollama-index="0">
             <div class='wide-p'>
                 <h2 class='chapter'>Монолітні будинки. Київ та Одеса</h2>
@@ -142,6 +172,7 @@
         </div>
         <div class='step' 
             data-class='show-first-pic' 
+            data-city='Київ' 
             data-src='img/Kyiv_1.png' 
             data-scrollama-index="1">      
         </div>
@@ -155,7 +186,8 @@
 
         <div class='step' 
             data-class='split' 
-            data-left-f='-15%'              
+            data-left-f='-15%' 
+            data-city='Київ'              
             data-src='img/Kyiv_3.png'
             data-src2='img/Kyiv_2.png' 
             data-scrollama-index="3" >
@@ -172,7 +204,7 @@
         <!-- Одеса -->
         <div class='step' 
             data-class='empty-slide'
-            data-city='Одеса' 
+           
             data-scrollama-index="5" >
             <div class='wide-p'>
                 <p>23 квітня ракетного удару зазнала Одеса. Російські військові влучили ракетою у четвертий під'їзд, між четвертим та п’ятим поверхами.Снаряд запустили з літака Ту-95, який перебував в акваторії Каспійського моря. Мінімум у двох квартирах ЖК «Тирас» почалися пожежі. Ракета пробила будинок наскрізь. 8 людей загинуло, 18 дістали поранення. 30 квартир одеситів були знищені повністю, ще 62 отримали руйнування різного ступеня. Влада ухвалила рішення, що будинок можна відновити. У травні зміцнили конструкції та стабілізували будинок, що допомогло зупинити його подальшу руйнацію. У 20-х числах липня місцеві медіа опублікували інформацію, що частина комплексу уже відбудована.</p>
@@ -181,6 +213,7 @@
         
         <div class='step' 
             data-class='show-first-pic' 
+            data-city='Одеса' 
             data-src='img/Odesa_1.png' 
             data-scrollama-index="6" >   
         </div>
@@ -193,6 +226,7 @@
 
         <div class='step' 
             data-class='split' 
+            data-city='Одеса' 
             data-src='img/Odesa_3.png' 
             data-src2='img/Odesa_2.png' 
             data-left-f='-8%' 
@@ -206,7 +240,7 @@
         <!-- Бородянка -->
         <div class='step' 
             data-class='empty-slide' 
-            data-city='Бородянка' 
+            
             data-scrollama-index="10" >
             <div class='wide-p'>
                 <h2 class='chapter'>Панельні будинки. Бородянка і Маріуполь</h2>
@@ -217,6 +251,7 @@
         
         <div class='step' 
             data-class='show-first-pic' 
+            data-city='Бородянка' 
             data-src='img/Borodjanka_1.png' 
             data-scrollama-index="11" >    
         </div>
@@ -231,6 +266,7 @@
         <div class='step' 
             data-class='split' 
             data-left-f='-15%' 
+            data-city='Бородянка' 
             data-src='img/Borodjanka_3.png' 
             data-src2='img/Borodjanka_2.png' 
             data-scrollama-index="13" >
@@ -244,14 +280,14 @@
 
         <!-- Маріуполь -->         
         <div class='step' 
-            data-class='empty-slide' 
-            data-city='Маріуполь' 
+            data-class='empty-slide'             
             data-scrollama-index="10"
             style='margin-top: 40vh' >  
         </div>
 
         <div class='step' 
             data-class='show-first-pic' 
+            data-city='Маріуполь' 
             data-src='img/Mariupol_1.png' 
             data-scrollama-index="16" >  
         </div>
@@ -265,6 +301,7 @@
         <div class='step' 
             data-class='split' 
             data-left-f='-15%' 
+            data-city='Маріуполь' 
             data-src='img/Mariupol_3.png' 
             data-src2='img/Mariupol_2.png' 
             data-scrollama-index="18" >
@@ -277,8 +314,7 @@
 
          <!-- Часів Яр -->
          <div class='step' 
-         data-class='empty-slide' 
-         data-city='Часів Яр' 
+         data-class='empty-slide'        
          data-scrollama-index="10" >
          <div class='wide-p'>
              <h2 class='chapter'>Цегляні будинки. Часів Яр, Харків, Чернігів</h2>
@@ -288,6 +324,7 @@
      
      <div class='step' 
          data-class='show-first-pic' 
+         data-city='Часів Яр' 
          data-src='img/Chasiv_Yar_1.png' 
          data-scrollama-index="11" > 
      </div>
@@ -301,6 +338,7 @@
      <div class='step' 
          data-class='split' 
          data-left-f='-8%' 
+         data-city='Часів Яр' 
          data-src='img/Chasiv_Yar_3.png' 
          data-src2='img/Chasiv_Yar_2.png' 
          data-scrollama-index="13" >
@@ -312,14 +350,14 @@
      
       <!-- Харків -->    
       <div class='step' 
-            data-class='empty-slide' 
-            data-city='Харків' 
+            data-class='empty-slide'           
             data-scrollama-index="10" 
             style='margin-top: 40vh' >   
         </div>
 
       <div class='step' 
         data-class='show-first-pic' 
+        data-city='Харків' 
         data-src='img/Kharkiv_1.png' 
         data-scrollama-index="16"> 
     </div>
@@ -333,6 +371,7 @@
     <div class='step' 
         data-class='split' 
         data-left-f='-15%' 
+        data-city='Харків' 
         data-src='img/Kharkiv_3.png' 
         data-src2='img/Kharkiv_2.png' 
         data-scrollama-index="18" >
@@ -344,14 +383,14 @@
 
    <!-- Чернігів -->  
    <div class='step' 
-            data-class='empty-slide' 
-            data-city='Чернігів' 
+            data-class='empty-slide'            
             data-scrollama-index="10"
             style='margin-top: 40vh' >  
     </div>
 
    <div class='step' 
         data-class='show-first-pic' 
+        data-city='Чернігів' 
         data-src='img/Chernigiv_1.png' 
         data-scrollama-index="16"> 
     </div>
@@ -368,7 +407,8 @@
         data-left-s='10%' 
         data-top-f='-10%' 
         data-top-s='30%'  
-        data-width='70%'     
+        data-width='70%'  
+        data-city='Чернігів'   
         data-src='img/Chernigiv_3.png' 
         data-src2='img/Chernigiv_2.png' 
         data-scrollama-index="18" >
@@ -381,8 +421,7 @@
 
    <!-- Ірпінь -->
    <div class='step' 
-   data-class='empty-slide' 
-   data-city='Ірпінь' 
+   data-class='empty-slide'   
    data-scrollama-index="10" >
    <div  class='wide-p'>
        <h2 class='chapter'>ЖК “Ірпінські Липки”</h2>
@@ -392,7 +431,8 @@
 </div>
 
 <div class='step' 
-   data-class='show-first-pic' 
+   data-class='show-first-pic'
+   data-city='Ірпінь'  
    data-src='img/Irprin_1.png' 
    data-scrollama-index="11">  
 </div>
@@ -406,6 +446,7 @@
 <div class='step' 
    data-class='split' 
    data-left-f='-15%' 
+   data-city='Ірпінь'  
    data-src='img/Irprin_3.png' 
    data-src2='img/Irprin_2.png' 
    data-scrollama-index="13" >
@@ -415,9 +456,14 @@
 </div>  
 
 
+
+
+
+
+
 <div class='step' 
     data-class='empty-slide' 
-    data-city='Часів Яр' 
+    data-city='' 
     data-scrollama-index="10"
     style='background-color: black; color: white;' >
     <div>    

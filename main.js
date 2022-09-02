@@ -12,6 +12,9 @@ function handleStepEnter(r) {
 
     //step 1
     } else if(preudoClass === 'show-first-pic' && r.direction ==="down"){ 
+        let city= $(r.element).data("city");
+        $("#city-marker").text(city);
+
         let src = $(r.element).data("src");
         $("#pic_1")
             .css("opacity", 0).attr("src", src)
@@ -30,7 +33,7 @@ function handleStepEnter(r) {
     //step 2
     }  else if(preudoClass === 'show-second-pic' && r.direction ==="down"){       
         let src= $(r.element).data("src");
-        $("#pic_1").fadeTo(1000, 1);
+        $("#pic_1").fadeTo(1000, 0.2);
        
         $("#pic_2")   
             .css("opacity", 0)         
@@ -38,7 +41,7 @@ function handleStepEnter(r) {
             .fadeTo(1000, 1);
 
     } else if(preudoClass === 'show-second-pic' && r.direction ==="up"){             
-            $("img.pic").animate({'left':0, "top":0, "width": "100%"}, 1000, function() {
+            $("img.pic").animate({'left':0, "top": "50px", "width": "100%"}, 1000, function() {
                 let src= $(r.element).data("src").replace("2", "1");
                 $("#pic_1").attr("src", src);
        });       
@@ -47,13 +50,15 @@ function handleStepEnter(r) {
     } else if(preudoClass === 'split' && r.direction ==="down"){
         let marginLeft_1 = $(r.element).data("left-f") ?? "-15%";
         let marginLeft_2 = $(r.element).data("left-s") ?? "40%";
-        let marginTop_1 = $(r.element).data("top-f") ?? "0";
-        let marginTop_2 = $(r.element).data("top-s") ?? '0';
+        let marginTop_1 = $(r.element).data("top-f") ?? "50px";
+        let marginTop_2 = $(r.element).data("top-s") ?? '50px"';
         let picWidth = '80%';
 
 
-        $("#pic_1").css("opacity", 1)
-            .animate({'left':marginLeft_1, "top":marginTop_1, "width": picWidth},
+        $(".pic").fadeTo(100, 1);
+
+        $("#pic_1")
+            .animate({'left':marginLeft_1, "top":marginTop_1, "width": picWidth },
             1000, function() {
                 let src= $(r.element).data("src");           
                 $(this).attr("src", src);
@@ -68,9 +73,12 @@ function handleStepEnter(r) {
     }  else if(preudoClass === 'split' && r.direction ==="up"){
         let marginLeft_1 = $(r.element).data("left-f") ?? "-15%";
         let marginLeft_2 = $(r.element).data("left-s") ?? "40%";
-        let marginTop_1 = $(r.element).data("top-f") ?? "0";
-        let marginTop_2 = $(r.element).data("top-s") ?? '0';
+        let marginTop_1 = $(r.element).data("top-f") ?? "50px";
+        let marginTop_2 = $(r.element).data("top-s") ?? '50px';
         let picWidth = '80%';
+
+        let city= $(r.element).data("city");
+        $("#city-marker").text(city);
         
         $("#pic_1").css("opacity", 1)
         .animate({'left':marginLeft_1, "top":marginTop_1, "width": picWidth},
@@ -86,29 +94,18 @@ function handleStepEnter(r) {
                 $('#pic_2').attr("src", src2);
             }) 
     }
+
+    //step 4
     else if(preudoClass === 'empty-slide' && r.direction ==="down"){
-        let city= $(r.element).data("city");
-        $("#city-marker").text(city)
+        $("#city-marker").text('');
 
         $(".pic").animate({'opacity':  0},
             1000, function(){
                 $(this).attr("src", null)
                 .css("left",0)
-                .css("top",0)
+                .css("top", "50px")
                 .css("width", "100%")
             })
-
-      /*   d3.selectAll(".pic")        
-            .transition()
-            .duration(1000)
-            .style("opacity", 0)  
-            .on("end", function(){
-                d3.select(this)
-                .attr("src", null)
-                .style("left", 0)
-                .style("top", 0)
-                .style("width", '100%') ;
-            })  */
             
     } else if(preudoClass === 'empty-slide' && r.direction ==="up"){
         let city= $(r.element).data("city");
@@ -136,9 +133,10 @@ function init() {
         text: '.scroll__text',
         step: '.scroll__text .step',
         offset: 0.5,
-        debug: true
+        debug: false,
     })
-        .onStepEnter(handleStepEnter);
+        .onStepEnter(handleStepEnter)
+        .offsetTrigger("100px")
 
         window.addEventListener('resize', handleResize);
 }
@@ -148,3 +146,4 @@ init();
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 };
+
